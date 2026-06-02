@@ -4,7 +4,12 @@ class Matrix:
             self.row = row
         if isinstance(column, list):
             self.column = column
-        self.two_d = type
+
+    def create_a_matrix(self):
+        if len(self.row) == len(self.column):
+            return self.matrix()
+        raise ValueError("length of both should be same..")
 
 
-    def
+    def matrix(self, row, column):
+
