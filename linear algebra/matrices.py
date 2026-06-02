@@ -15,12 +15,12 @@ def show(mat, n, m):
     print()
   print()
 
-xs = range(1, 6+1)
+xs = [4,5,3,22,9,4]
 show(xs, 2, 3)
 # 1 2 3
 # 4 5 6
 
-# show(xs, 3, 2)
+show(xs, 3, 2)
 # # 1 2
 # # 3 4
 # # 5 6
