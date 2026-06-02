@@ -1,15 +1,11 @@
+
 class Matrix:
-    def __init__(self, row, column, type):
-        if isinstance(row, list):
-            self.row = row
-        if isinstance(column, list):
-            self.column = column
+    def __init__(self, rows):
+        self.rows = rows
 
-    def create_a_matrix(self):
-        if len(self.row) == len(self.column):
-            return self.matrix()
-        raise ValueError("length of both should be same..")
+    def matrix(self):
+        bn_mtrx = list(zip(*self.rows))
+        return bn_mtrx
 
-
-    def matrix(self, row, column):
-
+new_m = Matrix([[1,2,3,4], [5,6,7,8]])
+print(new_m.matrix())
