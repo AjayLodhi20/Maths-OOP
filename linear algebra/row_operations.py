@@ -6,7 +6,7 @@ import pprint
 
 # how to switch row in the matrix
 class RowOperations:
-    def __init__(self, *rows):
+    def __init__(self, rows):
         self.rows = rows
 
 
@@ -19,7 +19,7 @@ class RowOperations:
         return self.rows
 
 
-mat = RowOperations([1,2,3], [4,5,6])
+mat = RowOperations([[1,2,3], [4,5,6]])
 print(mat)
 mat.switching_rows(0,1)
 print(mat)
