@@ -99,9 +99,17 @@ class Mode:
         col5 = [sum(col1[i:i+3])for i in range(1, n-2, 3)]
         col6 = [sum(col1[i:i+3])for i in range(2, n-2, 3)]
 
+    def maximum(self, class_interval , column):
+        largest_classes= []
+        largest_frequency = 0
 
-        #find the maximum number in the column and mark the places of maximum number which the column holds
-        column_list = [col1, col2, col3, col4, col5, col6]
-        new_list = []
-        for col in column_list:
-            new_list.append(max(col))
+        for frequency, classes in zip(class_interval, column):
+            if frequency > largest_frequency:
+                largest_frequency = frequency
+                largest_classes.append(classes)
+            elif frequency == largest_frequency:
+                largest_classes.append(classes)
+            
+
+
+
