@@ -22,11 +22,11 @@ class Mode:
     def calculate(self):
         if isinstance(self.data, list):
             return self.calc_ung_data()
-        if isinstance(self.data, list) and self.is_bimodal == True:
+        if isinstance(self.data, list) and self.is_bimodal(self.data) == True:
             return self.bi_ung()
         if isinstance(self.data, dict) and len(self.data) == 2:
             return self.calc_grp_data()
-        if isinstance(self.data, dict) and len(self.data) == 2 and self.is_bimodal == True:
+        if isinstance(self.data, dict) and len(self.data) == 2 and self.is_bimodal(self.data) == True:
             return self.bi_grp()
         return "no output is given"
 
@@ -72,9 +72,10 @@ class Mode:
     # check which formula should be used based on the data provided
 
     def calc_ung_data(self):
+        """calculating ungrouped data.."""
         maximum = Counter(self.data)
         hello = max(maximum.values())
-        mode = [k for k, v in maximum if v == hello]
+        mode = [k for k, v in maximum.items() if v == hello]
         return mode
 
     def calc_grp_data(self):
@@ -91,25 +92,51 @@ class Mode:
         return mode
 
     def bi_grp(self):
-        n = len(self.data['Frequency'])
-        col1 = self.data['Frequency'][:]
-        col2 = [sum(col1[i:i+2])for i in range(0, n-1, 2)]
-        col3 = [sum(col1[i:i+2])for i in range(1, n-1, 2)]
-        col4 = [sum(col1[i:i+3])for i in range(0, n-2, 3)]
-        col5 = [sum(col1[i:i+3])for i in range(1, n-2, 3)]
-        col6 = [sum(col1[i:i+3])for i in range(2, n-2, 3)]
+        freqs = self.data['Frequency']
+        n = len(freqs)
+        tally = {i:0 for i in range(n)}
 
-    def maximum(self, class_interval , column):
-        largest_classes= []
-        largest_frequency = 0
+        max_col1 = max(freqs)
+        for i, f in enumerate(freqs):
+            if f == max_col1:
+                tally[i] += 1
 
-        for frequency, classes in zip(class_interval, column):
-            if frequency > largest_frequency:
-                largest_frequency = frequency
-                largest_classes.append(classes)
-            elif frequency == largest_frequency:
-                largest_classes.append(classes)
-            
+        col2 = {}
+        for i in range(0, n-1, 2):
+            col2[(i, i+1)] = freqs[i] + freqs[i+1]
+        if col2:
+            max_val = max(col2.values())
+            for pairs, value in col2.items():
+                if value == max_val:
+                    for idx in pairs:
+                        tally[idx] += 1
+
+        col3 = {}
+        for i in range(1, n-1, 2):
+            col3[(i, i+1)] = freqs[i] + freqs[i+1]
+        if col3:
+            max_val = max(col3.values())
+            for pairs, value in col3.items():
+                if value == max_val:
+                    for idx in pairs:
+                        tally[idx] += 1
+
+        col4 = {}
+        for i in range(0, n-2, 3):
+            col4[(i, i+1, i+2)] = freqs[i] + freqs[i+1] + freqs[i+2]
+        if col4:
+            max_val = col4.values()
+            for triplets, value in col4.items():
+                if max_val == value:
+                    for idx in triplets:
+                        tally[idx] += 1
+
+        col5 = {}
+        for i in range(2, n-2, 3):
+            col5[(i, i+1, i+2)] = freqs[i] + freqs[i+1] + freqs[i+2]
+
+
+
 
 
 
