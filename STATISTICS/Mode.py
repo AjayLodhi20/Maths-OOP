@@ -134,7 +134,22 @@ class Mode:
         col5 = {}
         for i in range(2, n-2, 3):
             col5[(i, i+1, i+2)] = freqs[i] + freqs[i+1] + freqs[i+2]
+        if col5:
+            max_val = max(col5.values())
+            for triplets, value in col5.items():
+                if value == max_val:
+                    for idx in triplets:
+                        tally[idx] += 1
 
+        col6 = {}
+        for i in range(2, n-2, 3):
+            col6[(i, i+1, i+2)] = freqs[i] + freqs[i+1] + freqs[i+2]
+        if col6:
+            max_val = max(col6.values())
+            for triplets, val in col6.items():
+                if val == max_val:
+                    for idx in triplets:
+                        tally[idx] += 1
 
 
 

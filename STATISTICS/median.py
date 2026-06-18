@@ -58,5 +58,3 @@ class Median:
 sol1 = Median(frequency_data_1)
 print(sol1.cum_freq())
 print(sol1.n_by_2_for_further_calc())
-
-
