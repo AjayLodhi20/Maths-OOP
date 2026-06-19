@@ -44,11 +44,11 @@ class CentralMoments:
         return mu2
 
     def mu3(self):
-        mu3 = self.mu3_prime() - 3*self.mu2_prime()*self.mu1_prime() + self.mu1_prime()**3
+        mu3 = self.mu3_prime() - 3*self.mu2_prime()*self.mu1_prime() + 2*self.mu1_prime()**3
         return mu3
 
     def mu4(self):
-        mu4 = self.mu4_prime() - 4*self.mu3_prime()*self.mu2_prime() + 6*self.mu2_prime()*self.mu1_prime()**2 - 3*self.mu1_prime()**4
+        mu4 = self.mu4_prime() - 4*self.mu3_prime()*self.mu1_prime() + 6*self.mu2_prime()*self.mu1_prime()**2 - 3*self.mu1_prime()**4
         return mu4
 all_central_moments = CentralMoments(x_o, frequency_o, assumed_mean)
 print(all_central_moments.mu2())
