@@ -1,13 +1,18 @@
 # μ
+
+x_o = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+frequency_o = [1, 8, 28, 56, 70, 56, 28, 8, 1]
+assumed_mean = 4
+
 class CentralMoments:
-    def __init__(self, X, frequency, origin):
-        self.X = X
+    def __init__(self, x, frequency, origin):
+        self.x = x
         self.frequency = frequency
         self.a = origin
 
     def d(self):
         """find the d which is x-a"""
-        d= [x-self.a for x in self.X]
+        d= [x-self.a for x in self.x]
         return d
 
     def mu1_prime(self):
@@ -45,3 +50,7 @@ class CentralMoments:
     def mu4(self):
         mu4 = self.mu4_prime() - 4*self.mu3_prime()*self.mu2_prime() + 6*self.mu2_prime()*self.mu1_prime()**2 - 3*self.mu1_prime()**4
         return mu4
+all_central_moments = CentralMoments(x_o, frequency_o, assumed_mean)
+print(all_central_moments.mu2())
+print(all_central_moments.mu3())
+print(all_central_moments.mu4())
