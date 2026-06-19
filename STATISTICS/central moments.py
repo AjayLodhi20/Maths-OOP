@@ -1,5 +1,5 @@
 # μ
-
+import matplotlib.pyplot as plt
 x_o = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 frequency_o = [1, 8, 28, 56, 70, 56, 28, 8, 1]
 assumed_mean = 4
@@ -51,6 +51,24 @@ class CentralMoments:
         mu4 = self.mu4_prime() - 4*self.mu3_prime()*self.mu1_prime() + 6*self.mu2_prime()*self.mu1_prime()**2 - 3*self.mu1_prime()**4
         return mu4
 all_central_moments = CentralMoments(x_o, frequency_o, assumed_mean)
-print(all_central_moments.mu2())
-print(all_central_moments.mu3())
-print(all_central_moments.mu4())
+m2  = all_central_moments.mu2()
+m3 = all_central_moments.mu3()
+m4 = all_central_moments.mu4()
+
+mean =  assumed_mean + all_central_moments.mu1_prime()
+std_dev = m2 ** 0.5
+
+plt.bar(x_o, frequency_o, color='skyblue', edgecolor='black', alpha=0.7, label='Observed Frequency')
+plt.axvline(mean, color='red', linestyle='dashed', linewidth=2, label=f'Mean = {mean:.2f}')
+plt.xlabel('X')
+plt.ylabel('Frequency')
+plt.title('Frequency Distribution with Mean Line')
+plt.legend()
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+
+
+plt.savefig('frequency_distribution.png')
+
+plt.show()
+
