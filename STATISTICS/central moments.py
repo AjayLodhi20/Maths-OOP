@@ -1,23 +1,32 @@
 # μ
 class CentralMoments:
-    def __init__(self, X, frequency):
+    def __init__(self, X, frequency, origin):
         self.X = X
         self.frequency = frequency
+        self.a = origin
 
-    def d(self, a):
+    def d(self):
         """find the d which is x-a"""
-        d= [x-a for x in self.X]
+        d= [x-self.a for x in self.X]
         return d
 
-    def mu1_prime(self, a):
-        mu_prime = [f * d for f,d in zip(self.frequency, self.d(a))]
+    def mu1_prime(self):
+        mu_prime = [f * d for f,d in zip(self.frequency, self.d())]
         new_mu1 = sum(mu_prime) / sum(self.frequency)
         return new_mu1
 
-    def mu2_prime(self, a):
-        mu2_prime = [f*d**2 for f,d in zip(self.frequency, self.d(a))]
+    def mu2_prime(self):
+        mu2_prime = [f*d**2 for f,d in zip(self.frequency, self.d())]
         mu2_prime_o = sum(mu2_prime) / sum(self.frequency)
         return mu2_prime_o
 
-    def
+    def mu3_prime(self):
+        mu3_prime = [f*d**3 for f,d in zip(self.frequency, self.d())]
+        mu3_prime_o = sum(mu3_prime) / sum(self.frequency)
+        return mu3_prime_o
+
+    def mu4_prime(self):
+        mu4_prime = [f*d**4 for f,d in zip(self.frequency, self.d())]
+        mu4_prime_o = sum(mu4_prime) / sum(self.frequency)
+        return mu4_prime_o
 
