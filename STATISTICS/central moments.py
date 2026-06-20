@@ -66,9 +66,5 @@ plt.title('Frequency Distribution with Mean Line')
 plt.legend()
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 
-
-
-plt.savefig('frequency_distribution.png')
-
 plt.show()
 
